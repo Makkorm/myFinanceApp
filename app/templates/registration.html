@@ -1,0 +1,72 @@
+<div class="row user-reg">
+    <div class="col-sm-6 col-sm-offset-3">
+        <form class="form-horizontal" name="userForm">
+            <div class="form-group">
+                <label for="userLogin" class="col-sm-2 control-label">Login</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="UserLogin" placeholder="Login" ng-model="user.login" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="userPass" class="col-sm-2 control-label">Пароль</label>
+                <div class="col-sm-10">
+                    <input type="password" class="form-control" id="userPass" placeholder="Пароль" ng-model="user.pass" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-8 col-sm-4">
+                    <button type="submit" class="btn btn-default" ng-click="getUser()">Вход</button>
+                    <a href="#" class="pull-right regLink" data-toggle="modal" data-target="#myModal">Зарегистрироваться</a>
+                </div>
+            </div>
+        </form>
+        <p class="error text-center" ng-show="userError">Такого пользователя не существует. Проверьте логин,или пароль</p>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" ng-controller="RegCtrl">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" id="closeBtn" class="close" data-dismiss="modal" aria-label="Close" ng-click="clearForm()"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Регистрация нового пользователя</h4>
+            </div>
+            <div class="modal-body">
+                <form class="new-user-form" name="newUserForm">
+                    <div class="form-group">
+                        <label for="newUserLogin">Login</label>
+                        <span class="error pull-right" ng-show="newUserForm.login.$error.required">*</span>
+                        <span class="error pull-right" ng-show="newUserForm.login.$error.maxlength">Максимальное число символов 16 !</span>
+                        <input type="text" class="form-control" id="newUserLogin" name="login"  placeholder="Login" ng-model="newUser.login" ng-maxlength="16" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="newUserPass">Пароль</label>
+                        <span class="error pull-right" ng-show="newUserForm.pass.$error.required">*</span>
+                        <input type="password" class="form-control" id="newUserPass" name="pass" required placeholder="Пароль" ng-model="newUser.pass">
+                    </div>
+                    <div class="form-group">
+                        <label for="newUserPassCopy">Повторите пароль</label>
+                        <span class="error pull-right" ng-show="newUserForm.passCopy.$error.required">*</span>
+                        <span class="error pull-right" ng-show="passCopyError">Пароли не совпадают</span>
+                        <input type="password" class="form-control"  id="newUserPassCopy" name="passCopy" required placeholder="Повторите пароль" ng-model="newUser.passCopy">
+                    </div>
+                    <div class="form-group">
+                        <label for="newUserName">Имя пользователя</label>
+                        <span class="error pull-right" ng-show="newUserForm.name.$error.required">*</span>
+                        <input type="text" class="form-control" id="newUserName" name="name"  placeholder="Имя пользователя" ng-model="newUser.name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="newUserEmail">Email</label>
+                        <span class="error pull-right" ng-show="newUserForm.email.$error.required">*</span>
+                        <input type="email" class="form-control" id="newUserEmail" name="email" placeholder="Email" ng-model="newUser.email">
+                    </div>
+                    <h3 class="text-center validForm" ng-show="validForm">Регистрация прошла успешно</h3>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="closeForm" class="btn btn-default" data-dismiss="modal" ng-click="clearForm()">Закрыть</button>
+                <input type="submit" class="btn btn-primary" value="Зарегистрироваться" ng-disabled="newUserForm.$invalid" ng-click="checkData()">
+            </div>
+        </div>
+    </div>
+</div>

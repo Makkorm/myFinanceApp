@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>My finance</title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style/main.css">
+</head>
+<body ng-controller="MainCtrl">
+    <div class="wrapper">
+        <header class="main-header">
+            <div class="row">
+                <div class="col-sm-4 col-sm-offset-4">
+                    <!--<h1 class="text-center user-name" ng-controller="ContentCtrl">{{user.UserName}}</h1>-->
+                </div>
+                <div class="col-sm-4">
+                    <ul class="foreign-currency">
+                        <li>USD<span>1.951</span></li>
+                        <li>EUR<span>1.074</span></li>
+                        <li>RUB<span>0.033</span></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+        <div class="content-box">
+            <div class="content">
+                <div ui-view>
+
+                </div>
+            </div>
+        </div>
+    </div>
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="bower_components/angular/angular.min.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+<script src="js/app.module.js"></script>
+<script src="js/controllers/MainCtrl.js"></script>
+<script src="js/controllers/EnterCtrl.js"></script>
+<script src="js/controllers/RegCtrl.js"></script>
+<script src="js/controllers/ContentCtrl.js"></script>
+</body>
+</html>

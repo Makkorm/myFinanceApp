@@ -1,0 +1,147 @@
+<nav class="nav">
+    <ul class="main-nav clearfix">
+        <li class="active"><a href="#">Общая информация</a></li>
+        <li><a href="#">Статистика</a></li>
+    </ul>
+</nav>
+<div class="row">
+    <div class="col-sm-6">
+        <table class="wallet-table table table-striped table-bordered">
+            <tr class="form-header">
+                <th>Доходы</th>
+                <th>Расходы</th>
+                <th>Описание</th>
+                <th>Дата</th>
+            </tr>
+            <tr>
+                <td class="income">1000$</td>
+                <td></td>
+                <td>Зарплата</td>
+                <td>01.01.2016</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="consumption">10$</td>
+                <td>пачка сигарет купленная в своем магазине</td>
+                <td>01.01.2016</td>
+            </tr>
+            <tr>
+                <td class="income">1000$</td>
+                <td></td>
+                <td>Зарплата</td>
+                <td>01.01.2016</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="consumption">10$</td>
+                <td>пачка сигарет купленная в своем магазине</td>
+                <td>01.01.2016</td>
+            </tr>
+            <tr>
+                <td class="income">1000$</td>
+                <td></td>
+                <td>Зарплата</td>
+                <td>01.01.2016</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="consumption">10$</td>
+                <td>пачка сигарет купленная в своем магазине</td>
+                <td>01.01.2016</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="consumption">10$</td>
+                <td>пачка сигарет купленная в своем магазине</td>
+                <td>01.01.2016</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="consumption">10$</td>
+                <td>пачка сигарет купленная в своем магазине</td>
+                <td>01.01.2016</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="consumption">10$</td>
+                <td>пачка сигарет купленная в своем магазине</td>
+                <td>01.01.2016</td>
+            </tr>
+        </table>
+        <nav aria-label="Page navigation">
+            <ul class="pagination text-center">
+                <li>
+                    <a href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li>
+                    <a href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="col-sm-3">
+        <div class="add-area">
+            <!--<h2 class="text-center">Добавить данные</h2>-->
+            <form>
+                <legend class="text-center form-header">Добавить данные</legend>
+                <div class="control-group">
+                    <!--<label class="radio text-center">-->
+                    <!--<input type="radio" name="optionsRadios" id="income" value="income" checked>-->
+                    <!--Доход-->
+                    <!--</label>-->
+                    <!--<label class="radio text-center">-->
+                    <!--<input type="radio" name="optionsRadios" id="consumption" value="consumption">-->
+                    <!--Расход-->
+                    <!--</label>-->
+                    <label class="clearfix label-box">
+                        Выберете действие
+                        <select class="action-name data-area">
+                            <option>Доход</option>
+                            <option>Расход</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="control-group">
+                    <label class="clearfix label-box">
+                        Укажите дату
+                        <input type="date" class="data-area">
+                    </label>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="action-descr">
+                        Описание
+                    </label>
+                    <div class="controls">
+                        <textarea id="action-descr" class="action-descr"></textarea>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-default add-data center-block">Добавить</button>
+            </form>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <!-- сюда пойдет общая статистика  -->
+        <div class="general-statistics clearfix">
+            <h3 class="text-center">Общая информация</h3>
+            <div class="general-info">
+                <p>Общий доход<span class="income">1000$</span></p>
+                <p>Обищй расход<span class="consumption">600</span></p>
+                <p>Сколько осталось<span>400</span></p>
+            </div>
+            <div class="currency-info">
+                <p>Остаток в UDS<span>234</span></p>
+                <p>Остаток в EUR<span>234234</span></p>
+                <p>Остаток в RUB<span>23423</span></p>
+            </div>
+        </div>
+    </div>
+</div>
