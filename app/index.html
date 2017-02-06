@@ -16,9 +16,9 @@
                 </div>
                 <div class="col-sm-4">
                     <ul class="foreign-currency">
-                        <li>USD<span>1.951</span></li>
-                        <li>EUR<span>1.074</span></li>
-                        <li>RUB<span>0.033</span></li>
+                        <li>USD<span ng-bind="currency.usd.Cur_OfficialRate"></span></li>
+                        <li>EUR<span ng-bind="currency.eur.Cur_OfficialRate"></span></li>
+                        <li>RUB<span ng-bind="currency.rub"></span></li>
                     </ul>
                 </div>
             </div>
@@ -36,6 +36,7 @@
 <script src="bower_components/angular/angular.min.js"></script>
 <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
 <script src="js/app.module.js"></script>
+<script src="js/filters/userDataFilter.js"></script>
 <script src="js/controllers/MainCtrl.js"></script>
 <script src="js/controllers/EnterCtrl.js"></script>
 <script src="js/controllers/RegCtrl.js"></script>

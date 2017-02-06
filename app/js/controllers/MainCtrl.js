@@ -7,37 +7,27 @@
     MainCtrl.$inject = ['$scope','$http'];
 
     function MainCtrl($scope, $http){
-        $scope.data = [];
-        var mas = '';
-        //$http.get('http://www.nbrb.by/API/ExRates/Rates/298')
-        //    .then(function(data){
-        //        console.log(data);
-        //    });
-        //$http.get('http://www.nbrb.by/API/ExRates/Rates/145')
-        //    .then(function(data){
-        //        console.log(data);
-        //    });
-        //$http.get('http://www.nbrb.by/API/ExRates/Rates/292')
-        //    .then(function(data){
-        //        console.log(data);
-        //    })
-        $http.get('http://www.nbrb.by/API/ExRates/Currencies')
+
+        // в переменную currency записываем данные о валютах, а именно рубл, доллар и евро
+        $scope.currency = [];
+
+        // получаем даныне о валюте из нац банка
+        $http.get('http://www.nbrb.by/API/ExRates/Rates/298')
+            .then(function(data) {
+                // так как из api курс рубля дается нам на 100 едениц, то есть на 100 рублей
+                // вручную переделаем на 1 рубль
+                var rub = data.data.Cur_OfficialRate/100;
+                $scope.currency.rub = rub;
+            });
+        $http.get('http://www.nbrb.by/API/ExRates/Rates/145')
             .then(function(data){
-                console.log(data.data)
-            })
-        $http.get('http://www.nbrb.by/API/ExRates/Currencies')
+                $scope.currency.usd = data.data;
+            });
+        $http.get('http://www.nbrb.by/API/ExRates/Rates/292')
             .then(function(data){
-                $scope.data = data.data;
-                for(var i = 0; i < data.data.length; i++){
-                    for( var key in data.data[i]){
-                        console.log( key +" "+ data.data[key])
-                    }
-                }
-            })
+                $scope.currency.eur = data.data;
+            });
 
-
-
-        console.log(mas)
     }
 
 

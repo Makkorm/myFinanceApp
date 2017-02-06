@@ -2,7 +2,7 @@
 
     angular
         .module('app')
-        .controller('RegCtrl', ['$scope','$http','$state','$timeout',RegCtrl]);
+        .controller('RegCtrl', ['$scope','$http','$timeout',RegCtrl]);
 
     RegCtrl.$inject = ['$scope','$http','$state','$timeout'];
 

@@ -13,59 +13,11 @@
                 <th>Описание</th>
                 <th>Дата</th>
             </tr>
-            <tr>
-                <td class="income">1000$</td>
-                <td></td>
-                <td>Зарплата</td>
-                <td>01.01.2016</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td class="consumption">10$</td>
-                <td>пачка сигарет купленная в своем магазине</td>
-                <td>01.01.2016</td>
-            </tr>
-            <tr>
-                <td class="income">1000$</td>
-                <td></td>
-                <td>Зарплата</td>
-                <td>01.01.2016</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td class="consumption">10$</td>
-                <td>пачка сигарет купленная в своем магазине</td>
-                <td>01.01.2016</td>
-            </tr>
-            <tr>
-                <td class="income">1000$</td>
-                <td></td>
-                <td>Зарплата</td>
-                <td>01.01.2016</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td class="consumption">10$</td>
-                <td>пачка сигарет купленная в своем магазине</td>
-                <td>01.01.2016</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td class="consumption">10$</td>
-                <td>пачка сигарет купленная в своем магазине</td>
-                <td>01.01.2016</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td class="consumption">10$</td>
-                <td>пачка сигарет купленная в своем магазине</td>
-                <td>01.01.2016</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td class="consumption">10$</td>
-                <td>пачка сигарет купленная в своем магазине</td>
-                <td>01.01.2016</td>
+            <tr ng-repeat="operation in user">
+                <td class="income" ng-bind="operation.Name == 'Доход' ? operation.PaymentValue : ' '"></td>
+                <td class="consumption" ng-bind="operation.Name == 'Расход' ? operation.PaymentValue : ' '"></td>
+                <td ng-bind="operation.Note"></td>
+                <td ng-bind="operation.PaymentDate | date:'dd-MM-yyyy'"></td>
             </tr>
         </table>
         <nav aria-label="Page navigation">
@@ -88,60 +40,75 @@
             </ul>
         </nav>
     </div>
-    <div class="col-sm-3">
-        <div class="add-area">
-            <!--<h2 class="text-center">Добавить данные</h2>-->
-            <form>
-                <legend class="text-center form-header">Добавить данные</legend>
-                <div class="control-group">
-                    <!--<label class="radio text-center">-->
-                    <!--<input type="radio" name="optionsRadios" id="income" value="income" checked>-->
-                    <!--Доход-->
-                    <!--</label>-->
-                    <!--<label class="radio text-center">-->
-                    <!--<input type="radio" name="optionsRadios" id="consumption" value="consumption">-->
-                    <!--Расход-->
-                    <!--</label>-->
-                    <label class="clearfix label-box">
-                        Выберете действие
-                        <select class="action-name data-area">
-                            <option>Доход</option>
-                            <option>Расход</option>
-                        </select>
-                    </label>
-                </div>
-                <div class="control-group">
-                    <label class="clearfix label-box">
-                        Укажите дату
-                        <input type="date" class="data-area">
-                    </label>
-                </div>
-                <div class="control-group">
-                    <label class="control-label" for="action-descr">
-                        Описание
-                    </label>
-                    <div class="controls">
-                        <textarea id="action-descr" class="action-descr"></textarea>
+    <div class="col-sm-6">
+        <div class="col-sm-7">
+            <div class="add-area">
+                <!--<h2 class="text-center">Добавить данные</h2>-->
+                <form name="newOperationForm">
+                    <legend class="text-center form-header">Добавить данные</legend>
+                    <div class="control-group">
+                        <label class="clearfix label-box">
+                            Выберете действие
+                            <select class="action-name data-area select" name="operation" ng-model="operation" ng-change="addProperty('operation', operation)">
+                                <option name="income">Доход</option>
+                                <option name="consumption">Расход</option>
+                            </select>
+                        </label>
                     </div>
-                </div>
-                <button type="button" class="btn btn-default add-data center-block">Добавить</button>
-            </form>
+                    <div class="control-group">
+                        <label class="clearfix label-box">
+                            Укажите категорию
+                            <select class="action-name data-area select" ng-if="operation == 'Доход'"  ng-model="category" ng-options="cat.Name for cat in incomeCat" ng-change="addProperty('category',category)">
+                                <option></option>
+                            </select>
+                            <select class="action-name data-area select" ng-if="operation == 'Расход'"  ng-model="category" ng-options="cat.Name for cat in consumptionCat" ng-change="addProperty('category',category)">
+                                <option></option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="control-group">
+                        <label class="clearfix label-box">
+                            Укажите сумму<span class="error" ng-if="newOperationForm.amount.$error.required">*</span>
+                            <input type="text" class="data-area form-control" name="amount" ng-model="newOperation.amount"  ng-pattern="/^\d+$/" required placeholder="укажите сумму">
+                        </label>
+                    </div>
+                    <div class="control-group clearfix">
+                        <div class="visible-lg-inline-block pull-right">
+                            <!--<label class="radio-inline text-right">-->
+                                <!--<input type="radio" name="cur" ng-model="cur" value="RUB" checked> RUB-->
+                            <!--</label>-->
+                            <!--<label class="radio-inline text-right">-->
+                                <!--<input type="radio" name="cur" ng-model="cur" value="USD"> USD-->
+                            <!--</label>-->
+                            <!--<label class="radio-inline text-right">-->
+                                <!--<input type="radio" name="cur" ng-model="cur" value="EUR"> EUR-->
+                            <!--</label>-->
+                            <label class="radio-inline text-right" ng-repeat="curr in currency">
+                                <input type="radio" ng-model="currency.name" ng-value="curr" ng-checked="curr.Id == 1" ng-change="addProperty('currency', currency.name)">{{curr.CurrencyCode}}
+                            </label>
+                        </div>
+                        {{currency.name | json}}
+                    </div>
+                    <div class="control-group">
+                        <label class="clearfix label-box">
+                            Укажите дату
+                            <input type="date" class="data-area" ng-model="newOperation.date">
+                        </label>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="action-descr">
+                            Описание
+                        </label>
+                        <div class="controls">
+                            <textarea id="action-descr" class="action-descr" ng-model="newOperation.descr"></textarea>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-default add-data center-block" ng-click="sendData()" ng-disabled="newOperationForm.$invalid">Добавить</button>
+                </form>
+            </div>
         </div>
     </div>
-    <div class="col-sm-3">
-        <!-- сюда пойдет общая статистика  -->
-        <div class="general-statistics clearfix">
-            <h3 class="text-center">Общая информация</h3>
-            <div class="general-info">
-                <p>Общий доход<span class="income">1000$</span></p>
-                <p>Обищй расход<span class="consumption">600</span></p>
-                <p>Сколько осталось<span>400</span></p>
-            </div>
-            <div class="currency-info">
-                <p>Остаток в UDS<span>234</span></p>
-                <p>Остаток в EUR<span>234234</span></p>
-                <p>Остаток в RUB<span>23423</span></p>
-            </div>
-        </div>
+    <div class="col-sm-5">
+
     </div>
 </div>
